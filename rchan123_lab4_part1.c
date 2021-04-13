@@ -1,7 +1,7 @@
-/*	Author: ryan
+/*	Author: Ryan Chang
  *  Partner(s) Name: 
- *	Lab Section:
- *	Assignment: Lab #  Exercise #
+ *	Lab Section: 023
+ *	Assignment: Lab 4 Exercise 1
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
@@ -17,8 +17,6 @@ void tick(){
     unsigned char tmpB = PORTB;
     switch(state){
         case DOWN:
-            tmpB = (tmpB == 0x02)? 0x01 : 0x02;
-            PORTB = tmpB;
             state = UP;
             break;
         case UP:
@@ -26,6 +24,15 @@ void tick(){
             break;
         case WAIT:
             state = (PINA == 0x01)? DOWN : WAIT;
+            break;
+    }
+    switch(state){
+        case DOWN:
+            PORTB = (tmpB == 0x02)? 0x01 : 0x02;
+            break;
+        case UP:
+            break;
+        case WAIT:
             break;
     }
     
