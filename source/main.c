@@ -15,8 +15,8 @@
 enum STATES{INC_DOWN, INC_UP, DEC_DOWN, DEC_UP, RESET, WAIT} state;
 void tick(){
     unsigned char tmpC = PORTC;
-    bool a0 = (PINA & 0x01 == 0x01)? 1 : 0;
-    bool a1 = (PINA & 0x02 == 0x02)? 1 : 0;
+    unsigned char a0 = ((PINA & 0x01) == 0x01)? 1 : 0;
+    unsigned char a1 = ((PINA & 0x02) == 0x02)? 1 : 0;
     switch(state){
         //next state
         case INC_DOWN:
