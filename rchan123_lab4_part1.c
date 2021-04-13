@@ -17,22 +17,16 @@ void tick(){
     unsigned char tmpB = PORTB;
     switch(state){
         case DOWN:
-            if(PORTB == 0x02)
-                PORTB = tmpB >> 1;
-            else
-                PORTB = tmpB << 1;
+            tmpB = (tmpB == 0x02)? 0x01 : 0x02;
+            PORTB = tmpB;
             state = UP;
             break;
         case UP:
-            if(PINA == 0x00)
-                state = WAIT;
+            state = (PINA == 0x01)? UP : WAIT;
             break;
         case WAIT:
-            if(PINA == 0x01)
-                state = DOWN;
+            state = (PINA == 0x01)? DOWN : WAIT;
             break;
-        default:
-            state = WAIT;
     }
     
 }
@@ -40,8 +34,9 @@ void tick(){
 int main(void) {
     /* Insert DDR and PORT initializations */
     DDRA = 0x00; PORTA = 0x00;
-    DDRB = 0X03; PORTB = 0x01;
+    DDRB = 0xFF; PORTB = 0x01;
     /* Insert your solution below */
+    state = WAIT;
     while (1) {
         tick();
     }
