@@ -16,30 +16,10 @@
 # altered in between executions (unless preconditions are used).
 tests = [ 
     {   #press nothing, 
-        'description': 'PINA: 0x00 => PORTB: 0x01',
+        'description': 'PINA: 0x00 => PORTC: 0x07',
         'steps': [{'inputs': [('PINA', 0x00)], 'iterations': 1}],
-        'expected': [('PORTB',0x01)],
-    },
-    {
-        'description': 'PINA: 0x01 => PORTB: 0x02',
-        'steps': [{'inputs': [('PINA', 0x01)], 'iterations': 1}],
-        'expected': [('PORTB',0x02)],
-    },
-    {
-        'description': 'PINA: 0x01 => PORTB: 0x02',
-        'steps': [{'inputs': [('PINA', 0x01)], 'iterations': 1}],
-        'expected': [('PORTB',0x02)],
-    },
-    {
-        'description': 'PINA: 0x00 => PORTB: 0x02',
-        'steps': [{'inputs': [('PINA', 0x00)], 'iterations': 1}],
-        'expected': [('PORTB',0x02)],
-    },
-    {
-        'description': 'PINA: 0x01 => PORTB: 0x01',
-        'steps': [{'inputs': [('PINA', 0x01)], 'iterations': 1}],
-        'expected': [('PORTB',0x01)],
+        'expected': [('PORTC',0x07)],
     },
     ]
-watch = ['state', 'PORTB']
+watch = ['state', 'PORTC']
 
