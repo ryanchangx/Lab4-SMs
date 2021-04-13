@@ -988,3 +988,24 @@ Test 6: "Count Up to 9PINA: 0x01 => PORTC: 0x09"...passed
 ==================================================
 Passed 6/6 tests. Skipped 0 tests.
 ==================================================
+==================================================
+Test 1: "PINA: 0x00 => PORTC: 0x07"...failed.
+	Expected PORTC := 7 but got 0 '\000'
+==================================================
+Test 2: "PINA: 0x01 => PORTC: 0x08"...failed.
+	Expected PORTC := 8 but got 0 '\000'
+==================================================
+Test 3: "PINA: 0x01 => PORTC: 0x08"...failed.
+	Expected PORTC := 8 but got 0 '\000'
+==================================================
+Test 4: "PINA: 0x00 => PORTC: 0x08"...failed.
+	Expected PORTC := 8 but got 0 '\000'
+==================================================
+Test 5: "PINA: 0x02 => PORTC: 0x07"...failed.
+	Expected PORTC := 7 but got 0 '\000'
+==================================================
+Test 6: "Count Up to 9PINA: 0x01 => PORTC: 0x09"...failed.
+	Expected PORTC := 9 but got 0 '\000'
+==================================================
+Passed 0/6 tests. Skipped 0 tests.
+==================================================
