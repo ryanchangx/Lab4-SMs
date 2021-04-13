@@ -31,7 +31,7 @@ void tick(){
             state = ((PINA >> 7) == 0x01)? LOCKED : state;
             break;
         case UNLOCKED:
-            state = ((PINA &  7) == 0x01)? LOCKED : state;
+            state = ((PINA >> 7) == 0x01)? LOCKED : state;
             break;
     }
     //action at each state

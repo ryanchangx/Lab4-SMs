@@ -25,6 +25,13 @@ tests = [
         ],
         'expected': [('PORTB',0x01)],
     },
+    {
+        'description': 'PINA: 0x80 => PORTB: 0x00',
+        'steps': [
+            {'inputs': [('PINA', 0x80)], 'iterations': 1},
+        ],
+        'expected': [('PORTB',0x00)],
+    },
     ]
 watch = ['state', 'PORTB']
 
