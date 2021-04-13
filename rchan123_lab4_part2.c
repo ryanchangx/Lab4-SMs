@@ -21,18 +21,22 @@ void tick(){
         //next state
         case INC_DOWN:
             state = INC_UP;
+            if(a1) state = DEC_DOWN;
             if(a1 && a0) state = RESET;
             break;
         case INC_UP:
             if(!a0) state = WAIT;
+            if(!a1 && a0) state = INC_DOWN;
             if(a1 && a0) state = RESET; 
             break;
         case DEC_DOWN:
             state = DEC_UP;
+            if(a0) state = INC_DOWN;
             if(a1 && a0) state = RESET;
             break;
         case DEC_UP:
             if(!a1) state = WAIT;
+            if(!a0 && a1) state = DEC_DOWN;
             if(a1 && a0) state = RESET;
             break;
         case RESET:
@@ -40,20 +44,22 @@ void tick(){
             break;
         case WAIT:
             if(a0) state = INC_DOWN;
-            else if(a1) state = DEC_DOWN;
+            if(a1) state = DEC_DOWN;
             if(a1 && a0) state = RESET;
             break;
     }
     //action at each state
     switch(state){
         case INC_DOWN:
-            ++tmpC;
+            if(tmpC < 9)
+                ++tmpC;
             PORTC = tmpC;
             break;
         case INC_UP:
             break;
         case DEC_DOWN:
-            --tmpC;
+            if(tmpC > 0)
+                --tmpC;
             PORTC = tmpC;
             break;
         case DEC_UP:
