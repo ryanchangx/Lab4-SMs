@@ -20,32 +20,30 @@ void tick(){
     switch(state){
         //next state
         case INC_DOWN:
-            state = INC_UP;
-            if(a1) state = DEC_DOWN;
-            if(a1 && a0) state = RESET;
+            state = (a0)? INC_UP : WAIT;
+            state = (!a0 && a1)? DEC_DOWN : WAIT;
+            state = (a1 && a0)? RESET : state;
             break;
         case INC_UP:
-            if(!a0) state = WAIT;
-            if(!a1 && a0) state = INC_DOWN;
-            if(a1 && a0) state = RESET; 
+            state = (a0)? INC_UP : WAIT;
+            state = (a1 && a0)? RESET : state;
             break;
         case DEC_DOWN:
-            state = DEC_UP;
-            if(a0) state = INC_DOWN;
-            if(a1 && a0) state = RESET;
+            state = (a1)? DEC_UP : WAIT;
+            state = (!a1 && a0)? INC_DOWN : state;
+            state = (a1 && a0)? RESET : state;
             break;
         case DEC_UP:
-            if(!a1) state = WAIT;
-            if(!a0 && a1) state = DEC_DOWN;
-            if(a1 && a0) state = RESET;
+            state = (a1)? DEC_UP : WAIT;
+            state = (a1 && a0)? RESET : state;
             break;
         case RESET:
-            state = WAIT;
+            state = (a1 && a0)? RESET : WAIT;
             break;
-        case WAIT:
-            if(a0) state = INC_DOWN;
-            if(a1) state = DEC_DOWN;
-            if(a1 && a0) state = RESET;
+        case WAIT: 
+            state = (a1)? DEC_DOWN : WAIT;
+            state = (a0)? INC_DOWN : state;
+            state = (a1 && a0)? RESET : state;
             break;
     }
     //action at each state
