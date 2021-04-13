@@ -20,8 +20,8 @@ void tick(){
     switch(state){
         //next state
         case INC_DOWN:
-            state = (a0)? INC_UP : WAIT;
-            state = (!a0 && a1)? DEC_DOWN : WAIT;
+            state = INC_UP;
+            state = (!a0 && a1)? DEC_DOWN : state;
             state = (a1 && a0)? RESET : state;
             break;
         case INC_UP:
@@ -29,7 +29,7 @@ void tick(){
             state = (a1 && a0)? RESET : state;
             break;
         case DEC_DOWN:
-            state = (a1)? DEC_UP : WAIT;
+            state = DEC_UP;
             state = (!a1 && a0)? INC_DOWN : state;
             state = (a1 && a0)? RESET : state;
             break;
