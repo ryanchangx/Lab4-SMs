@@ -17,21 +17,21 @@ void tick(){
     //next state
     switch(state){
         case LOCKED:
-            state = (!PA0 && !PA1 && PA2)? POUND_DOWN : LOCKED;
-            state = (PA7)? LOCKED : state;
+            state = (PINA == 0x04)? POUND_DOWN : LOCKED;
+            state = ((PINA >> 7) == 0x01)? LOCKED : state;
             break;
         case POUND_DOWN:
-            state = (!PA0 && !PA1 && PA2)? POUND_DOWN : LOCKED;
-            state = (!PA0 && !PA1 && !PA2)? POUND_UP : state;
-            state = (PA7)? LOCKED : state;
+            state = (PINA == 0x04)? POUND_DOWN : LOCKED;
+            state = (PINA == 0x00)? POUND_UP : state;
+            state = ((PINA >> 7) == 0x01)? LOCKED : state;
             break;
         case POUND_UP:
-            state = (!PA0 && !PA1 && !PA2)? POUND_UP : LOCKED;
-            state = (!PA0 && PA1 && !PA2)? UNLOCKED : state;
-            state = (PA7)? LOCKED : state;
+            state = (PINA == 0x00)? POUND_UP : state;
+            state = (PINA = 0x02)? UNLOCKED : state;
+            state = ((PINA >> 7) == 0x01)? LOCKED : state;
             break;
         case UNLOCKED:
-            state = (PA7)? LOCKED : UNLOCKED;
+            state = ((PINA &  7) == 0x01)? LOCKED : state;
             break;
     }
     //action at each state
