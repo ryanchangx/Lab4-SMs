@@ -25,10 +25,10 @@ void tick(){
         case DOWN:
             if(PINA == 0x00){
                 state = UP;
-                ++i;
                 if(i == 3){
                     state = TRIGGER;
                 }
+                ++i;
             }
             break;
         case UP:
