@@ -23,19 +23,16 @@ void tick(){
             state = (PINA == order[0])? DOWN : WAIT;
             break;
         case DOWN:
-            if(PINA == 0x00){
-                state = UP;
-                if(i == 3){
-                    state = TRIGGER;
-                }
-                ++i;
-            }
-            break;
-        case UP:
-            if(PINA != order[i]){
+            ++i;
+            if(PINA == order[i]){
                 state = WAIT;
                 i = 0;
             }
+            else{
+                state = (i == 3)? TRIGGER : UP;
+            }
+            break;
+        case UP:
             state = DOWN;
             state = (PINA == 0x00)? UP : state;
             break;
